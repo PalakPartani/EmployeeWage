@@ -14,27 +14,31 @@ isFulltime=1
 totalHrs=0
 totalDays=0
 
-Hours()
+calHours()
 {
 	while (($totalHrs < $TOTAL_HRS || $totalDays < $TOTAL_WORKING_DAYS))
 	do
 		((totalDays++))
-		case $check in
-			$isParttime )
-   	totalHrs=$(($totalHrs+$FULL_DAY_HOUR))
+		
+	case $(( RANDOM%3 )) in
+	1)
+		hrs=$FULL_DAY_HOUR
 	;;
 
-		$isFulltime )
- 
-   	totalHrs=$(($totalHrs+$PART_TIME_HOUR))
-
+	2)
+		hrs=$PART_TIME_HOUR
 	;;
+	*)
+		emphrs=0 
 	esac
-	done
-return $totalHrs
+dailyWageArr[$totalDays]=$(($hrs*$WAGE_PER_HOUR))
+totalHrs=$(($totalHrs+$hrs))	
+done
+
 }
 
-Hours
+calHours
 monthlyWage=$(($totalHrs*$WAGE_PER_HOUR))
+echo "Daily wage of employee : " ${dailyWageArr[@]}
 echo "Monthly wage of employee : " $monthlyWage
 
