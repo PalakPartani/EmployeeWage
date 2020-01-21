@@ -14,7 +14,7 @@ isFulltime=1
 totalHrs=0
 totalDays=0
 
-Hours()
+calHours()
 {
 	while (($totalHrs < $TOTAL_HRS || $totalDays < $TOTAL_WORKING_DAYS))
 	do
@@ -34,7 +34,7 @@ Hours()
 return $totalHrs
 }
 
-Hours
+calHours
 monthlyWage=$(($totalHrs*$WAGE_PER_HOUR))
 echo "Monthly wage of employee : " $monthlyWage
 
