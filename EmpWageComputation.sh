@@ -7,26 +7,27 @@ readonly WAGE_PER_HOUR=20
 readonly FULL_DAY_HOUR=8
 readonly PART_TIME_HOUR=4
 readonly TOTAL_WORKING_DAYS=20
+readonly TOTAL_HRS=100
 check=$((RANDOM%3))
 isParttime=2
 isFulltime=1
 totalHrs=0
-for ((i=0;i<=$TOTAL_WORKING_DAYS;i++))
+totalDays=0
+while (($totalHrs < $TOTAL_HRS || $totalDays < $TOTAL_WORKING_DAYS))
 do
-case $check in
-$isParttime )
+	((totalDays++))
+	case $check in
+	$isParttime )
  
-   totalHrs=$(($totalHrs+$FULL_DAY_HOUR))
-;;
+   	totalHrs=$(($totalHrs+$FULL_DAY_HOUR))
+	;;
 
-$isFulltime )
+	$isFulltime )
  
-   totalHrs=$(($totalHrs+$PART_TIME_HOUR))
+   	totalHrs=$(($totalHrs+$PART_TIME_HOUR))
 
-;;
-* )
- echo "Emp Absent"
-esac
+	;;
+	esac
 done
 monthlyWage=$(($totalHrs*$WAGE_PER_HOUR))
 echo "Monthly wage of employee : " $monthlyWage
