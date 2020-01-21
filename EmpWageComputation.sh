@@ -13,23 +13,28 @@ isParttime=2
 isFulltime=1
 totalHrs=0
 totalDays=0
-while (($totalHrs < $TOTAL_HRS || $totalDays < $TOTAL_WORKING_DAYS))
-do
-	((totalDays++))
-	case $check in
-	$isParttime )
- 
+
+Hours()
+{
+	while (($totalHrs < $TOTAL_HRS || $totalDays < $TOTAL_WORKING_DAYS))
+	do
+		((totalDays++))
+		case $check in
+			$isParttime )
    	totalHrs=$(($totalHrs+$FULL_DAY_HOUR))
 	;;
 
-	$isFulltime )
+		$isFulltime )
  
    	totalHrs=$(($totalHrs+$PART_TIME_HOUR))
 
 	;;
 	esac
-done
+	done
+return $totalHrs
+}
+
+Hours
 monthlyWage=$(($totalHrs*$WAGE_PER_HOUR))
 echo "Monthly wage of employee : " $monthlyWage
-
 
