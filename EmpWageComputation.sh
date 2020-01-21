@@ -1,8 +1,11 @@
 
 #!/bin/bash
+
+echo "Welcome to EmpWage computation"
+
 readonly WAGE_PER_HOUR=20
 readonly FULL_DAY_HOUR=8
-echo "Welcome to EmpWage computation"
+
 isPresent=1
 checkPresent=$((RANDOM%2))
 if(($checkPresent==$isPresent))
