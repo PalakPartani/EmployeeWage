@@ -13,11 +13,12 @@ isParttime=2
 isFulltime=1
 totalHrs=0
 totalDays=0
-
+i=0
 calHours()
 {
 	while (($totalHrs < $TOTAL_HRS || $totalDays < $TOTAL_WORKING_DAYS))
 	do
+		((i++))
 		((totalDays++))
 		
 	case $(( RANDOM%3 )) in
@@ -31,7 +32,7 @@ calHours()
 	*)
 		emphrs=0 
 	esac
-dailyWageArr[$totalDays]=$(($hrs*$WAGE_PER_HOUR))
+dailyWageArr[$i]=$(($hrs*$WAGE_PER_HOUR))
 totalHrs=$(($totalHrs+$hrs))	
 done
 
