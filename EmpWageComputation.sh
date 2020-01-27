@@ -1,4 +1,3 @@
-
 #!/bin/bash 
 
 echo "Welcome to EmpWage computation"
@@ -9,27 +8,26 @@ readonly PART_TIME_HOUR=4
 readonly TOTAL_WORKING_DAYS=20
 readonly TOTAL_HRS=100
 check=$((RANDOM%3))
-isParttime=2
-isFulltime=1
 totalHrs=0
 totalDays=0
 calHours()
 {
-	while (($totalHrs < $TOTAL_HRS || $totalDays < $TOTAL_WORKING_DAYS))
+	while (($totalHrs < $TOTAL_HRS && $totalDays < $TOTAL_WORKING_DAYS))
 	do
-		
-		((totalDays++))
 		
 	case $(( RANDOM%3 )) in
 	1)
 		hrs=$FULL_DAY_HOUR
+		((totalDays++))
 	;;
 
 	2)
 		hrs=$PART_TIME_HOUR
+		((totalDays++))
 	;;
 	*)
-		emphrs=0 
+		hrs=0 
+	;;
 	esac
 dailyWageDict[$totalDays]=$(($hrs*$WAGE_PER_HOUR))
 totalHrs=$(($totalHrs+$hrs))	
@@ -39,7 +37,7 @@ done
 
 calHours
 monthlyWage=$(($totalHrs*$WAGE_PER_HOUR))
-echo "Daily wage of employee : " ${!dailyWageDict[@]}
+echo "Days  : " ${!dailyWageDict[@]}
 echo "Daily wage of employee : " ${dailyWageDict[@]}
 
 echo "Monthly wage of employee : " $monthlyWage
